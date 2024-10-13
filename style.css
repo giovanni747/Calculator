@@ -1,0 +1,129 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    width: 304px;
+    height: auto;
+    background-color: #4d4747;
+    padding: 18px;
+    border-radius: 15px;
+    margin-top: auto; /* Ensure it stays at the bottom */
+}
+
+/* Base button styles */
+.btn_base {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    font-size: 18px;
+    height: 70px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 20%;
+    background-color: #333; /* Default background color */
+    transition: background-color 0.3s ease; /* Smooth transition on background change */
+}
+
+/* Operator buttons should have a distinct color */
+.btn_operator {
+    background-color: #F3722C; /* Operator color */
+}
+
+/* Glow effect using before pseudo-element */
+.btn_base::before {
+    content: "";
+    background: linear-gradient(
+        45deg, 
+        #F94144, #F3722C, #F8961E, #F9844A, #F9C74F, #90BE6D, #43AA8B, #43AA8B, #4D908E, #577590, #277DA1
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    opacity: 0; /* Start with no glow */
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 20%;
+}
+
+/* Hover state that increases opacity of the glow */
+.btn_base:hover::before {
+    opacity: 1;
+}
+
+/* Active state triggers the multicolored glow */
+.btn_base:active::before {
+    opacity: 1; /* Show the glow when clicked */
+    filter: blur(0px); /* Enhance the glow effect slightly on click */
+    animation: glowing 2s linear; /* Speed up the animation when clicked */
+}
+
+/* Special button image */
+.btn_special img {
+    width: 30px;
+    height: 30px;
+    color: white;
+    object-fit: fill;
+    z-index: 1;
+}
+
+/* Animation for the glowing effect */
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+}
+
+.btn_operator, .btn_special {
+    position: relative;
+    z-index: 1; 
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4d4747;
+}
+.screen{
+    background-color:#577590;
+    width: 300px;
+    height: 100px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #605959;
+    display: flex;
+    justify-content: flex-end; /* Align items to the left */
+    align-items: center;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical overflow */
+    white-space: nowrap; /* Prevent wrapping */
+    padding: 10px
+
+}
+.home {
+    margin-top: 30px;
+    background-color: #4d4747;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* Center contents horizontally */
+    width: 340px;
+    height: 530px;
+    border-radius: 15px;
+}
